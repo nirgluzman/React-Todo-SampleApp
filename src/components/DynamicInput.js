@@ -16,26 +16,29 @@ const DynamicInput = () => {
   };
 
   const moveBoxDown = (i) => {
-    if (i < boxes.length - 1) {
-      [boxes[i + 1], boxes[i]] = [boxes[i], boxes[i + 1]];
+    let newBoxes = [...boxes];
+    if (i < newBoxes.length - 1) {
+      [newBoxes[i + 1], newBoxes[i]] = [newBoxes[i], newBoxes[i + 1]];
     }
 
-    setFocusedIdx(i < boxes.length - 1 ? i + 1 : i);
-    setBoxes(boxes);
+    setFocusedIdx(i < newBoxes.length - 1 ? i + 1 : i);
+    setBoxes(newBoxes);
   };
 
   const moveBoxUp = (i) => {
+    let newBoxes = [...boxes];
     if (i) {
-      [boxes[i - 1], boxes[i]] = [boxes[i], boxes[i - 1]];
+      [newBoxes[i - 1], newBoxes[i]] = [newBoxes[i], newBoxes[i - 1]];
     }
 
     setFocusedIdx(i ? i - 1 : i);
-    setBoxes(boxes);
+    setBoxes(newBoxes);
   };
 
   const handleKeyPress = (event, i) => {
-    boxes[i] = event.target.value;
-    setBoxes(boxes);
+    let newBoxes = [...boxes];
+    newBoxes[i] = event.target.value;
+    setBoxes(newBoxes);
     setFocusedIdx(i);
   };
 
